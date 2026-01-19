@@ -1,50 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0b0c14;
+  --color-foreground: #ffffff;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  
+  --color-nav-text: #C9D3EE;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0c14;
+  --foreground: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
+  /* The exact Better Stack dark base */
+  background-color: #0b0c14;
+  /* A subtle radial sheen to give depth, matching the navbar's feel */
+  background-image: radial-gradient(50% 50% at 50% 0%, #1a1d2d 0%, #0b0c14 100%);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
+/* --- Hero Specific Styles --- */
+
+/* The Beam Background */
+.hero-beam {
+  position: absolute;
+  top: -120px; /* Positioned to backlight the text */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 650px; /* Reduced from 900px to stop it bleeding behind the image bottom */
+  
+  /* The intense central glow */
+  background: conic-gradient(from 180deg at 50% 50%, #0b0c14 0deg, #22263d 140deg, #46518c 170deg, #6871df 180deg, #46518c 190deg, #22263d 220deg, #0b0c14 360deg);
+  
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  
+  /* TIGHTER MASK: Fades out much faster */
+  /* The light is now strictly oval, fading to transparent at 70% */
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 10%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, black 10%, transparent 70%);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* --- Hero Image Blending Mask (Aggressive Edges) --- */
+.hero-image-blend {
+  overflow: hidden;
+
+  /* Sides: Fade starts 10% in, ends 90% out (Aggressive side blend) */
+  --mask-sides: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  
+  /* Bottom: Fades out in the last 30% */
+  --mask-bottom: linear-gradient(to bottom, black 70%, transparent 100%);
+
+  mask-image: var(--mask-sides), var(--mask-bottom);
+  mask-composite: intersect;
+
+  -webkit-mask-image: var(--mask-sides), var(--mask-bottom);
+  -webkit-mask-composite: source-in;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Heading Gradient: White to transparent white */
+.homepage-heading-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.imgDark {
-  display: none;
+/* CTA Button Gradient */
+.cta-button {
+  background-image: linear-gradient(180deg, #6871df 0%, #5a62c6 100%);
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.cta-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Input Styles Helper */
+.bg-button-gradient {
+  background-image: linear-gradient(180deg, #6871df 0%, #5a62c6 100%);
+}
 
-  .imgLight {
-    display: none;
-  }
-  .imgDark {
-    display: unset;
-  }
+/* Dropdown arrow rotation */
+.group:hover .group-hover\:rotate-180 {
+  transform: rotate(180deg);
+}
+.group:hover .group-hover\:block {
+  display: block;
+}
+
+.text-gradient-metallic {
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Separator Gradient for the HR */
+.border-separator-gradient {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(90deg, transparent 0%, rgba(114, 125, 161, 0.2) 50%, transparent 100%);
+}
+
+/* Card Backgrounds */
+.bg-card-dark {
+  background-color: #0F101A;
 }
