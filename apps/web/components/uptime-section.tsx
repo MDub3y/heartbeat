@@ -117,7 +117,7 @@ export function UptimeSection() {
                 Screenshots & error logs
               </h4>
               <p className="mt-2 text-[#9CA3AF] text-sm leading-relaxed">
-                We record your API's error message and take a screenshot of your website being down so that you know exactly what happened.
+                We record your API&apos;s error message and take a screenshot of your website being down so that you know exactly what happened.
               </p>
             </div>
           </motion.div>
@@ -178,7 +178,7 @@ export function UptimeSection() {
       </div>
 
       {/* Separator Line */}
-      <hr className="mt-36 border-separator-gradient" />
+      <div className="premium-separator" />
     </section>
   );
 }

@@ -24,6 +24,22 @@ body {
   overflow-x: hidden;
 }
 
+.premium-separator {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg, 
+    rgba(0, 0, 0, 0) 0%, 
+    rgba(114, 125, 161, 0.2) 20%, 
+    rgba(201, 211, 238, 0.4) 50%, 
+    rgba(114, 125, 161, 0.2) 80%, 
+    rgba(0, 0, 0, 0) 100%
+  );
+  margin-top: 9rem;
+  opacity: 0.6;
+}
+
 /* --- Hero Specific Styles --- */
 
 /* The Beam Background */
@@ -117,4 +133,24 @@ body {
 /* Card Backgrounds */
 .bg-card-dark {
   background-color: #0F101A;
+}
+
+.group:hover .group-hover\:w-4 {
+  width: 1rem; /* w-4 */
+}
+.group:hover .group-hover\:w-0 {
+  width: 0px;
+}
+
+/* Competitor Card Background */
+.bg-competitor-card {
+  background-color: rgba(23, 24, 36, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.bg-cta-flare {
+  background-image: url('/landing/bg-downtime.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100% auto; 
 }

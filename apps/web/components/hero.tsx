@@ -4,15 +4,6 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { Marquee } from "./ui/marquee";
-import { 
-  Cpu, 
-  Globe, 
-  Shield, 
-  Activity, 
-  Heart, 
-  ShoppingBag, 
-  Flag 
-} from "lucide-react";
 
 export function Hero() {
   return (
@@ -107,18 +98,7 @@ export function Hero() {
       </motion.div>
 
       {/* --- Marquee Section (Bottom of Hero) --- */}
-        <Marquee speed={30} className="opacity-60">
-           {/* Mocking the Logos from the Alt Text */}
-           <div className="flex items-center gap-16 md:gap-24 px-8 text-[#939DB8] font-semibold text-xl tracking-tight select-none">
-              <span className="flex items-center gap-2"><Cpu className="w-6 h-6" /> Accenture</span>
-              <span className="flex items-center gap-2"><Activity className="w-6 h-6" /> Raspberry Pi</span>
-              <span className="flex items-center gap-2"><Shield className="w-6 h-6" /> Brave</span>
-              <span className="flex items-center gap-2"><Globe className="w-6 h-6" /> Drata</span>
-              <span className="flex items-center gap-2"><Heart className="w-6 h-6" /> Unicef</span>
-              <span className="flex items-center gap-2"><Flag className="w-6 h-6" /> Canada</span>
-              <span className="flex items-center gap-2"><ShoppingBag className="w-6 h-6" /> Decathlon</span>
-           </div>
-        </Marquee>
+        <Marquee speed={30} className="opacity-60" />
     </section>
   );
 }
