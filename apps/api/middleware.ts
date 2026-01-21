@@ -1,20 +1,28 @@
 import type { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import { fromNodeHeaders } from "better-auth/node";
+import { auth } from "./auth";
 import { ZodSchema } from "zod";
 
-export function authMiddleware(req: Request, res: Response, next: NextFunction) {
-    const header = req.headers.authorization;
-    if (!header) {
-        res.status(401).json({ message: "Unauthorized" });
-        return;
-    }
+export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
-        const token = header.split(" ")[1] || header;
-        const decoded = jwt.verify(token, process.env.JWT_SECRET!) as jwt.JwtPayload;
-        req.userId = decoded.sub as string;
+        // This helper converts Express headers to standard Fetch headers for Better Auth
+        const headers = fromNodeHeaders(req.headers);
+
+        const session = await auth.api.getSession({
+            headers: headers,
+        });
+
+        if (!session) {
+            res.status(401).json({ message: "Unauthorized" });
+            return;
+        }
+
+        // Attach the user ID from the session
+        req.userId = session.user.id;
         next();
     } catch (e) {
-        res.status(401).json({ message: "Invalid Token" });
+        console.error("Auth Error:", e);
+        res.status(500).json({ message: "Internal Server Error during auth" });
     }
 }
 

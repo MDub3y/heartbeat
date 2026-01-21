@@ -154,3 +154,97 @@ body {
   background-repeat: no-repeat;
   background-size: 100% auto; 
 }
+
+@layer components {
+  /* REUSABLE TYPOGRAPHY 
+     Combines the font-size, weight, gradient, and alignment 
+  */
+  .text-section-title {
+    @apply mt-2 pb-2 font-bold text-center text-[28px] md:text-[40px] leading-[108%] tracking-tight;
+    /* Composing the metallic gradient logic here */
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-section-subtitle {
+    @apply mt-3 text-[#C9D3EE] text-center text-lg leading-relaxed tracking-[-0.01em];
+  }
+
+  /* REUSABLE BUTTON (The "Explore X" pill)
+  */
+  .btn-pill {
+    @apply mt-8 px-5 py-2.5 flex items-center gap-2 text-[13px] font-medium rounded-full border border-[#939DB8]/20 bg-[#171824] text-[#C9D3EE] transition-all;
+  }
+  .btn-pill:hover {
+    @apply brightness-125;
+  }
+  
+  /* REUSABLE CARD (For the grids) */
+  .card-premium {
+    @apply rounded-xl border border-[#939DB8]/10 bg-[#0F101A] overflow-hidden;
+  }
+
+  .auth-label {
+    @apply block mb-2 text-sm font-medium text-[#C9D3EE];
+  }
+
+  .auth-form-control {
+    @apply w-full h-12 px-4 rounded-lg bg-[#171824] border border-[#727DA1]/20 text-white placeholder-[#727DA1] focus:outline-none focus:border-[#5B63D3] focus:ring-1 focus:ring-[#5B63D3] transition-all;
+  }
+
+  .auth-btn-primary {
+    @apply w-full h-12 flex items-center justify-center rounded-lg bg-[#5B63D3] hover:bg-[#4d55c4] text-white font-medium transition-colors shadow-lg shadow-[#5B63D3]/20;
+  }
+
+  .auth-btn-secondary {
+    @apply w-full h-12 flex items-center justify-center rounded-lg border border-[#727DA1]/20 hover:bg-[#727DA1]/10 text-white font-medium transition-colors;
+  }
+
+  .auth-btn-tertiary {
+    @apply text-sm text-[#727DA1] hover:text-[#C9D3EE] transition-colors;
+  }
+
+  .bg-dashboard {
+    @apply bg-[#0B0C14];
+  }
+
+  /* The gray cards/panels */
+  .dashboard-card {
+    @apply bg-[#13141C] border border-[#26272F] rounded-lg shadow-sm;
+  }
+
+  /* Headers */
+  .dashboard-h1 {
+    @apply text-2xl font-semibold text-white tracking-tight;
+  }
+  
+  .dashboard-h2 {
+    @apply text-lg font-medium text-white mb-4;
+  }
+
+  /* Inputs & Selects */
+  .dashboard-input {
+    @apply w-full h-10 px-3 rounded bg-[#0B0C14] border border-[#26272F] text-white text-sm placeholder-[#555B6D] focus:outline-none focus:border-[#5B63D3] focus:ring-1 focus:ring-[#5B63D3] transition-all;
+  }
+
+  /* Checkboxes */
+  .dashboard-checkbox {
+    @apply w-4 h-4 rounded border border-[#555B6D] bg-[#0B0C14] text-[#5B63D3] focus:ring-0 focus:ring-offset-0 checked:bg-[#5B63D3] checked:border-[#5B63D3];
+  }
+
+  /* Labels */
+  .dashboard-label {
+    @apply block text-sm font-medium text-[#9CA3AF] mb-1.5;
+  }
+
+  .dashboard-subtext {
+    @apply text-xs text-[#555B6D] mt-1.5;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply h-10 px-4 flex items-center justify-center rounded bg-[#5B63D3] hover:bg-[#4d55c4] text-white text-sm font-medium transition-colors shadow-lg shadow-[#5B63D3]/20;
+  }
+}

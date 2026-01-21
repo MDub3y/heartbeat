@@ -22,17 +22,13 @@ import {
   ShieldCheck, 
   Newspaper 
 } from "lucide-react";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="w-full max-w-[1110px] mx-auto flex justify-center sticky top-0 z-50 pt-0 bg-[#0c0d14]/80 backdrop-blur-md border-b border-[#727DA1]/15">
-      
-      {/* EXACT HTML STRUCTURE ADAPTED TO REACT 
-         Classes: grow flex justify-between border-b mx-5 max-w-[1110px] h-[52px] text-[13px] leading-[100%] text-[#C9D3EE] border-[#727DA1]/15
-      */}
       <nav className="grow flex justify-between mx-5 max-w-[1110px] h-[52px] text-[13px] leading-[100%] text-[#C9D3EE]">
         
         {/* Left Section */}
@@ -126,12 +122,10 @@ export function Navbar() {
 
         {/* Right Section */}
         <div className="flex items-center sm:gap-2 whitespace-nowrap -mr-3 md:mr-0">
-          <Link className="p-2 transition hover:text-white font-medium" href="#">Sign in</Link>
-          <button className="p-2">
-          <Link className="px-3 h-[27px] flex items-center rounded bg-button-gradient text-white font-medium text-[13px] shadow-sm" href="#">
+          <Link className="p-2 transition hover:text-white font-medium" href="/signin">Sign in</Link>
+          <Link className="p-2 px-3 h-[27px] flex items-center rounded bg-button-gradient text-white font-medium text-[13px] shadow-sm" href="signup">
             Sign up
           </Link>
-          </button>
           
           {/* Mobile Toggle */}
           <button 
@@ -164,8 +158,14 @@ export function Navbar() {
   );
 }
 
-// Helper Components to keep the main Navbar clean but match structure
-function MenuItem({ href, icon, title, desc }: any) {
+interface MenuItemProps {
+  href: string;
+  icon: ReactNode;
+  title: string;
+  desc: string;
+}
+
+function MenuItem({ href, icon, title, desc }: MenuItemProps) {
     return (
         <Link href={href} className="block px-3 flex gap-3 transition py-[10px] hover:bg-[#727DA1]/15 rounded leading-[145%] group/item">
             <span className="mt-0.5">{icon}</span>
@@ -177,7 +177,13 @@ function MenuItem({ href, icon, title, desc }: any) {
     )
 }
 
-function SmallMenuItem({ href, icon, text }: any) {
+interface SmallMenuItemProps {
+  href: string;
+  icon: ReactNode;
+  text: string;
+}
+
+function SmallMenuItem({ href, icon, text }: SmallMenuItemProps) {
     return (
         <Link href={href} className="block px-2 flex items-center gap-2 transition py-[6px] hover:bg-[#727DA1]/15 rounded-[6px] leading-[145%] text-neutral-200 hover:text-white">
             <span className="text-neutral-400">{icon}</span>
