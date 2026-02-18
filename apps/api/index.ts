@@ -4,7 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { prismaClient } from "store/client";
-import { website_status } from "../../packages/store/generated/prisma";
+import { website_status } from "store/client";
 import { authMiddleware, errorHandler, validate } from "./middleware";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
