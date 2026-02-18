@@ -1,16 +1,26 @@
 {
   "version": 2,
-  "functions": {
-    "apps/api/index.ts": {
-      "includeFiles": "packages/store/generated/**"
-    }
-  },
   "builds": [
-    { "src": "apps/api/index.ts", "use": "@vercel/node" },
-    { "src": "apps/web/next.config.js", "use": "@vercel/next" }
+    {
+      "src": "apps/api/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["packages/store/generated/**"]
+      }
+    },
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
   ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "apps/api/index.ts" },
-    { "source": "/((?!api/).*)", "destination": "apps/web/$1" }
+    {
+      "source": "/api/:path*",
+      "destination": "apps/api/index.ts"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "apps/web/$1"
+    }
   ]
 }
