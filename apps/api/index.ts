@@ -123,6 +123,14 @@ app.get("/status/:websiteId", authMiddleware, asyncHandler(async (req, res) => {
     });
 }));
 
+app.get("/health", (req, res) => {
+    res.json({
+        status: "ok",
+        timestamp: new Date().toISOString(),
+        env: process.env.NODE_ENV
+    });
+});
+
 app.use(errorHandler);
 
 export default app;
