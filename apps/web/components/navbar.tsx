@@ -23,6 +23,7 @@ import {
   Newspaper 
 } from "lucide-react";
 import { ReactNode, useState } from "react";
+import Image from "next/image";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,7 +37,13 @@ export function Navbar() {
           <Link aria-label="Go to homepage" className="flex items-center py-3" href="/">
              {/* Logo Approximation */}
              <div className="flex items-center gap-2 text-[#C9D3EE] font-semibold text-md -ml-2">
-                <div className="w-5 h-5 bg-white text-black flex items-center justify-center rounded-[4px] text-[10px]">▲</div>
+                <Image 
+                  src={"/landing/icons/betterstack-logo.png"}
+                  alt="Better Stack" 
+                  width={20} 
+                  height={20} 
+                  className="w-6 h-6 mt-1 rounded-[4px]"
+                />
                 <span className="font-roboto tracking-tight">Better Stack</span>
              </div>
           </Link>
