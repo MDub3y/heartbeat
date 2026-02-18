@@ -6,5 +6,9 @@ export const auth = betterAuth({
   database: prismaAdapter(prismaClient, {
     provider: "postgresql",
   }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://uptime-jls0pgxsy-manasvis-projects-641394dc.vercel.app"
+  ],
   secret: process.env.BETTER_AUTH_SECRET,
 });
