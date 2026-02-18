@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "postinstall": "bunx turbo run build --filter=store",
-    "build": "turbo run build",
+    "build": "bunx turbo run build --filter=store && next build apps/web",
     "dev": "turbo run dev",
     "dev:ui": "turbo run dev --filter=web --filter=api",
     "dev:demo": "turbo run dev --filter=pusher --filter=worker",
