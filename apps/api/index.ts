@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://uptime-jls0pgxsy-manasvis-projects-641394dc.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
