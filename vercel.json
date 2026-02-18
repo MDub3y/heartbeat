@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "apps/api/*.ts": {
+    "**/*.ts": {
       "includeFiles": "packages/store/**"
     }
   },
