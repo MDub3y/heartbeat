@@ -1,23 +1,14 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { magicLink } from "better-auth/plugins";
-import { PrismaClient } from "../../../../packages/store/generated/prisma";
-const prisma = new PrismaClient();
+import { prismaClient } from "store/client";
 
 export const auth = betterAuth({
-  database: prismaAdapter(prisma, {
+  database: prismaAdapter(prismaClient, {
     provider: "postgresql",
   }),
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [
-    magicLink({
-      sendMagicLink: async ({ email, token, url }, request) => {
-        console.log(`Sending magic link to ${email}: ${url}`);
-      }
-    })
-  ],
 
   databaseHooks: {
     user: {

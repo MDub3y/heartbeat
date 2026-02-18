@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun index.ts"
+    "dev": "bun --env-file=../../.env index.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",

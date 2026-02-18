@@ -2,9 +2,27 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronRight, Info } from "lucide-react";
+import { ChevronDown, ChevronRight, Info, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { apiFetch } from "@/app/lib/api";
+import { motion, type Variants } from "motion/react";
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.1 } 
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.3, ease: "easeOut" } 
+  }
+};
 
 export default function CreateMonitorPage() {
   const router = useRouter();
@@ -26,10 +44,11 @@ export default function CreateMonitorPage() {
     setIsLoading(true);
     
     try {
+      // ✅ Hooked to Backend
       await apiFetch("/website", {
         method: "POST",
         body: JSON.stringify({
-          url: url,
+          url: url, // Backend validates this is a valid URL
         }),
       });
 
@@ -37,23 +56,27 @@ export default function CreateMonitorPage() {
       
     } catch (error: any) {
       alert(error.message || "Failed to create monitor");
-    } finally {
       setIsLoading(false);
     }
   }
 
   return (
-    <div className="p-8 max-w-[1040px] mx-auto pb-32">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="p-8 max-w-[1040px] mx-auto pb-32"
+    >
       
       {/* Header */}
-      <div className="mb-8">
+      <motion.div variants={itemVariants} className="mb-8">
         <h1 className="dashboard-h1 mb-2">Create monitor</h1>
-      </div>
+      </motion.div>
 
       <form onSubmit={handleSubmit}>
         
         {/* SECTION 1: What to monitor */}
-        <div className="flex flex-col xl:flex-row gap-8 xl:gap-14 mb-10">
+        <motion.div variants={itemVariants} className="flex flex-col xl:flex-row gap-8 xl:gap-14 mb-10">
             <div className="flex-1 xl:max-w-[300px] mt-2">
                 <h2 className="text-white font-medium text-lg">What to monitor</h2>
                 <p className="text-[#9CA3AF] text-sm mt-2 leading-relaxed">
@@ -94,15 +117,15 @@ export default function CreateMonitorPage() {
                     </label>
                     <div className="relative">
                         <input 
-                            type="text" 
+                            type="url" // ✅ Browser validation for https://
                             placeholder="https://" 
-                            className="dashboard-input"
+                            className="dashboard-input pr-10"
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
                             required
                         />
-                        {/* Status Indicator (Fake for UI) */}
-                        <div className="absolute right-3 top-2.5 w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center">
+                        {/* Status Indicator */}
+                        <div className="absolute right-3 top-2.5 w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center pointer-events-none">
                             <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
                         </div>
                     </div>
@@ -112,10 +135,10 @@ export default function CreateMonitorPage() {
                 </div>
 
             </div>
-        </div>
+        </motion.div>
 
         {/* SECTION 2: On-call escalation */}
-        <div className="flex flex-col xl:flex-row gap-8 xl:gap-14 mb-10">
+        <motion.div variants={itemVariants} className="flex flex-col xl:flex-row gap-8 xl:gap-14 mb-10">
             <div className="flex-1 xl:max-w-[300px] mt-2">
                 <h2 className="text-white font-medium text-lg">On-call escalation</h2>
                 <p className="text-[#9CA3AF] text-sm mt-2 leading-relaxed">
@@ -170,10 +193,10 @@ export default function CreateMonitorPage() {
                 </div>
 
             </div>
-        </div>
+        </motion.div>
 
         {/* SECTION 3: Advanced Settings (Toggle) */}
-        <div className="mb-10">
+        <motion.div variants={itemVariants} className="mb-10">
             <button 
                 type="button"
                 onClick={() => setShowAdvanced(!showAdvanced)}
@@ -184,7 +207,11 @@ export default function CreateMonitorPage() {
             </button>
 
             {showAdvanced && (
-                <div className="mt-8 flex flex-col xl:flex-row gap-8 xl:gap-14 animate-in fade-in slide-in-from-top-4 duration-300">
+                <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    className="mt-8 flex flex-col xl:flex-row gap-8 xl:gap-14 overflow-hidden"
+                >
                     <div className="flex-1 xl:max-w-[300px] mt-2">
                         <h2 className="text-white font-medium text-lg">Advanced settings</h2>
                         <p className="text-[#9CA3AF] text-sm mt-2 leading-relaxed">
@@ -193,7 +220,6 @@ export default function CreateMonitorPage() {
                     </div>
 
                     <div className="flex-2 w-full dashboard-card p-6">
-                        
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="dashboard-label">Recovery period</label>
@@ -224,14 +250,13 @@ export default function CreateMonitorPage() {
                                 </select>
                             </div>
                         </div>
-
                     </div>
-                </div>
+                </motion.div>
             )}
-        </div>
+        </motion.div>
 
         {/* Footer Actions */}
-        <div className="flex justify-end pt-6 border-t border-transparent">
+        <motion.div variants={itemVariants} className="flex justify-end pt-6 border-t border-transparent">
             <button 
                 type="submit" 
                 disabled={isLoading}
@@ -239,16 +264,16 @@ export default function CreateMonitorPage() {
             >
                 {isLoading ? (
                     <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin" />
                         Creating...
                     </div>
                 ) : (
                     "Create monitor"
                 )}
             </button>
-        </div>
+        </motion.div>
 
       </form>
-    </div>
+    </motion.div>
   );
 }

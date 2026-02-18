@@ -70,29 +70,46 @@ model Verification {
 }
 
 model website {
-  id            String  @id    @default(uuid()) 
-  url           String
-  user_id       String
-  time_added     DateTime
-  ticks         website_tick[]
-  user          User    @relation(fields: [user_id], references: [id])
+  id          String   @id @default(uuid())
+  url         String
+  user_id     String
+  time_added  DateTime
+  user        User     @relation(fields: [user_id], references: [id])
+  
+  ticks       website_tick[]
+  regions     website_region[]
 }
 
 model region {
-  id            String  @id    @default(uuid()) 
-  name          String
-  tickes        website_tick[]
+  id     String   @id @default(uuid())
+  name   String   @unique 
+  code   String   @unique
+  
+  ticks           website_tick[]
+  websites        website_region[]
+}
+
+model website_region {
+  id         String   @id @default(uuid())
+  website_id String
+  region_id  String
+  
+  website    website @relation(fields: [website_id], references: [id], onDelete: Cascade)
+  region     region  @relation(fields: [region_id], references: [id], onDelete: Cascade)
+
+  @@unique([website_id, region_id])
 }
 
 model website_tick {
-  id                      String  @id     @default(uuid())
-  response_time_ms        Int
-  status                  website_status
-  region                  region     @relation(fields: [region_id], references: [id])
-  website                 website     @relation(fields: [website_id], references: [id])     
-  region_id               String
-  website_id              String
-  createdAt               DateTime    @default(now())
+  id               String   @id @default(uuid())
+  response_time_ms Int
+  status           website_status
+  createdAt        DateTime @default(now())
+  
+  region_id        String
+  region           region   @relation(fields: [region_id], references: [id])
+  website_id       String
+  website          website  @relation(fields: [website_id], references: [id], onDelete: Cascade)
 }
 
 enum website_status {

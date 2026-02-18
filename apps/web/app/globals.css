@@ -248,3 +248,59 @@ body {
     @apply h-10 px-4 flex items-center justify-center rounded bg-[#5B63D3] hover:bg-[#4d55c4] text-white text-sm font-medium transition-colors shadow-lg shadow-[#5B63D3]/20;
   }
 }
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src:
+    local('Helvetica Now Text Regular'),
+    local('HelveticaNowText-Regular'),
+    url('/static/fonts/Helvetica/HelveticaNowText-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src:
+    local('Helvetica Now Text Medium'),
+    local('HelveticaNowText-Medium'),
+    url('/static/fonts/Helvetica/HelveticaNowText-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src:
+    local('Helvetica Now Text Bold'),
+    local('HelveticaNowText-Bold'),
+    url('/static/fonts/Helvetica/HelveticaNowText-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Display (headings) */
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src:
+    local('Helvetica Now Display Medium'),
+    local('HelveticaNowDisplay-Medium'),
+    url('/static/fonts/Helvetica/HelveticaNowDisplay-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src:
+    local('Helvetica Now Display Bold'),
+    local('HelveticaNowDisplay-Bold'),
+    url('/static/fonts/Helvetica/HelveticaNowDisplay-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

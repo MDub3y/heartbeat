@@ -17,6 +17,7 @@ import {
 
 import { signOut, useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -36,12 +37,18 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-[240px] bg-[#13141C] border-r border-[#26272F] flex flex-col z-50">
+    <aside className="fixed left-0 top-0 h-screen w-[240px] bg-[#222838] border-r border-[#293040] flex flex-col z-50">
       
       {/* Logo Area */}
-      <div className="h-[60px] flex items-center px-5 border-b border-[#26272F]">
+      <div className="h-[60px] flex items-center px-5 border-b border-[#293040]">
         <Link href="/dashboard" className="flex items-center gap-2 text-white font-bold text-lg">
-            <div className="w-5 h-5 bg-white text-black flex items-center justify-center rounded-[4px] text-[10px]">▲</div>
+            <Image 
+                src={"/landing/icons/betterstack-logo.png"}
+                alt="Better Stack" 
+                width={20} 
+                height={20} 
+                className="w-6 h-6 mt-1 rounded-[4px]"
+            />
             <span className="font-roboto tracking-tight">Better Stack</span>
         </Link>
       </div>
@@ -71,7 +78,7 @@ export function Sidebar() {
       </div>
 
       {/* User Footer */}
-      <div className="p-4 border-t border-[#26272F]">
+      <div className="p-4 border-t border-[#293040]">
         <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-[#5B63D3] flex items-center justify-center text-xs text-white font-bold">
                 {session?.user?.name?.charAt(0).toUpperCase() || "U"}
@@ -103,8 +110,8 @@ function NavItem({ href, icon, label, active }: { href: string, icon: React.Reac
             href={href}
             className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 active 
-                ? "bg-[#26272F] text-white" 
-                : "text-[#9CA3AF] hover:bg-[#26272F]/50 hover:text-white"
+                ? "bg-[#293040] text-white" 
+                : "text-[#9CA3AF] hover:bg-[#293040]/50 hover:text-white"
             }`}
         >
             <span className={active ? "text-[#5B63D3]" : "text-[#555B6D]"}>
