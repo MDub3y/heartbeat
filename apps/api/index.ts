@@ -11,10 +11,15 @@ import { z } from "zod";
 const app = express();
 
 app.use(cors({
-    origin: [
-        "http://localhost:3000",
-        "https://uptime-jls0pgxsy-manasvis-projects-641394dc.vercel.app"
-    ],
+    origin: (origin, callback) => {
+        if (!origin ||
+            origin.includes("localhost") ||
+            origin.endsWith(".vercel.app")) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
