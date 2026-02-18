@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import { prismaClient, website_status } from "store/client";
+import { prismaClient } from "store/client";
 import { authMiddleware, errorHandler, validate } from "./middleware";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
@@ -102,7 +102,7 @@ app.get("/status/:websiteId", authMiddleware, asyncHandler(async (req, res) => {
             const date = new Date(lastTickDate.getTime() - (i + 1) * 3 * 60 * 1000);
             return {
                 id: `mock-${i}`,
-                status: Math.random() > 0.98 ? "Down" : "Up" as website_status,
+                status: Math.random() > 0.98 ? "Down" : "Up" as any,
                 response_time_ms: Math.floor(Math.random() * (400 - 150) + 150),
                 createdAt: date,
                 region_id: "mock-region",
