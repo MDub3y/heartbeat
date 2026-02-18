@@ -2,10 +2,10 @@
   "name": "betteruptime",
   "private": true,
   "scripts": {
-    "postinstall": "bunx turbo run build --filter=store",
-    "build": "bunx turbo run build --filter=store && next build apps/web",
+    "postinstall": "cd packages/store && bunx prisma generate",
+    "build": "bun run postinstall && turbo run build",
     "dev": "turbo run dev",
-    "dev:ui": "turbo run dev --filter=web --filter=api",
+    "dev:ui": "bun run postinstall && turbo run dev --filter=web --filter=api",
     "dev:demo": "turbo run dev --filter=pusher --filter=worker",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
