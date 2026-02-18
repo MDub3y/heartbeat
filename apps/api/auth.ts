@@ -8,7 +8,7 @@ export const auth = betterAuth({
   }),
   trustedOrigins: [
     "http://localhost:3000",
-    "https://uptime-jls0pgxsy-manasvis-projects-641394dc.vercel.app"
+    "https://*.vercel.app"
   ],
   secret: process.env.BETTER_AUTH_SECRET,
 });
