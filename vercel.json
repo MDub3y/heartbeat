@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "**": {
-      "includeFiles": "packages/store/**"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/:path*",
