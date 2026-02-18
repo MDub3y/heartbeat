@@ -1,13 +1,18 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "apps/api/index.ts",
-      "use": "@vercel/node",
-      "config": { "includeFiles": ["packages/store/**"] }
+  "functions": {
+    "apps/api/index.ts": {
+      "includeFiles": "packages/store/**"
     }
-  ],
+  },
   "rewrites": [
-    { "source": "/(.*)", "destination": "apps/api/index.ts" }
+    {
+      "source": "/api/:path*",
+      "destination": "apps/api/index.ts"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "apps/web/$1"
+    }
   ]
 }
