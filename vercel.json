@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/apps/api/:path*"
+      "destination": "/apps/api/index.ts" 
     },
     {
       "source": "/((?!api/).*)",

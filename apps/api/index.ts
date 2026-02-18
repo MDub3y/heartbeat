@@ -125,7 +125,11 @@ app.get("/status/:websiteId", authMiddleware, asyncHandler(async (req, res) => {
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-    console.log(`API Running on port ${PORT}`);
-});
+export default app;
+
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3001;
+    app.listen(PORT, () => {
+        console.log(`Local API running on port ${PORT}`);
+    });
+}
