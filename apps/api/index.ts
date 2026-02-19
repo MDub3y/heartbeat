@@ -8,28 +8,12 @@ import { authMiddleware, errorHandler, validate } from "./middleware";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
 
-import { toNodeHandler } from "better-auth/node";
-import { auth } from "./auth";
-
 const app = express();
 
 app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin ||
-            origin.includes("localhost") ||
-            origin.endsWith(".vercel.app") ||
-            origin === process.env.BETTER_AUTH_URL) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: true,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "Cookie"]
 }));
-
-app.all("/api/auth/*", toNodeHandler(auth));
 
 app.use(express.json());
 app.use(helmet());
