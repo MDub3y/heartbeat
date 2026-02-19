@@ -7,6 +7,7 @@ import { prismaClient } from "store/client";
 import { authMiddleware, errorHandler, validate } from "./middleware";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
+import type { AuthRequest } from "./types";
 
 const app = express();
 
@@ -30,7 +31,7 @@ const WebsiteSchema = z.object({
     url: z.string().url("Invalid URL format")
 });
 
-app.get("/website", authMiddleware, asyncHandler(async (req, res) => {
+app.get("/website", authMiddleware, asyncHandler(async (req: AuthRequest, res) => {
     const websites = await prismaClient.website.findMany({
         where: {
             user_id: req.userId,
@@ -49,7 +50,7 @@ app.get("/website", authMiddleware, asyncHandler(async (req, res) => {
     res.json({ websites });
 }));
 
-app.post("/website", authMiddleware, validate(WebsiteSchema), asyncHandler(async (req, res) => {
+app.post("/website", authMiddleware, validate(WebsiteSchema), asyncHandler(async (req: AuthRequest, res) => {
     const website = await prismaClient.website.create({
         data: {
             url: req.body.url,
@@ -68,7 +69,7 @@ app.post("/website", authMiddleware, validate(WebsiteSchema), asyncHandler(async
     res.status(201).json({ id: website.id });
 }));
 
-app.get("/status/:websiteId", authMiddleware, asyncHandler(async (req, res) => {
+app.get("/status/:websiteId", authMiddleware, asyncHandler(async (req: AuthRequest, res) => {
     const website = await prismaClient.website.findFirst({
         where: {
             user_id: req.userId,
