@@ -2,12 +2,13 @@ export const config = {
     runtime: 'nodejs',
 };
 
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Response } from "express";
+import type { AuthRequest } from "./types";
 import { fromNodeHeaders } from "better-auth/node";
 import { auth } from "./auth";
 import { ZodSchema } from "zod";
 
-export async function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
     try {
         // This helper converts Express headers to standard Fetch headers for Better Auth
         const headers = fromNodeHeaders(req.headers);
@@ -30,7 +31,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
     }
 }
 
-export const validate = (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
+export const validate = (schema: ZodSchema) => (req: AuthRequest, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req.body);
     if (!result.success) {
         res.status(400).json({
@@ -43,7 +44,7 @@ export const validate = (schema: ZodSchema) => (req: Request, res: Response, nex
     next();
 };
 
-export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: Error, req: AuthRequest, res: Response, next: NextFunction) => {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
 };
