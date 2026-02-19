@@ -10,7 +10,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0",
-    "store": "*"
+    "store": "*",
+    "api": "*"
   },
   "dependencies": {
     "better-auth": "^1.4.17",

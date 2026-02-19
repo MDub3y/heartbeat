@@ -2,6 +2,9 @@
   "name": "api",
   "module": "index.ts",
   "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
   "scripts": {
     "dev": "bun --env-file=../../.env index.ts"
   },
