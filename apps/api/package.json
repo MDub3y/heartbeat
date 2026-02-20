@@ -11,8 +11,7 @@
   },
   "scripts": {
     "dev": "bun --env-file=../../.env index.ts",
-    "build": "bun x tsup",
-  "start": "node dist/index.js"
+    "build": "tsup && cp ../../packages/store/generated/prisma/*.node ./api/ 2>/dev/null || true"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",

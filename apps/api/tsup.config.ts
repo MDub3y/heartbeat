@@ -9,7 +9,7 @@ export default defineConfig({
   bundle: true,
   noExternal: ['store', /^\./],
   external: ['@prisma/client', 'prisma'],
-  outDir: 'dist',
+  outDir: 'api',
   platform: 'node',
   target: 'node20',
 });
