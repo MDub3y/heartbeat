@@ -5,13 +5,14 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
       "env": [
         "UPSTASH_REDIS_REST_URL",
         "UPSTASH_REDIS_REST_TOKEN",
         "REGION_CODE",
         "WORKER_ID",
         "BETTER_AUTH_SECRET",
+        "BETTER_AUTH_URL",
         "DATABASE_URL",
         "NEXT_PUBLIC_API_URL"
       ]
