@@ -5,7 +5,7 @@
       "src": "index.ts",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["../../packages/store/prisma/schema.prisma"]
+        "nodeVersion": "20.x"
       }
     }
   ],

@@ -9,6 +9,7 @@
     "@types/bun": "latest"
   },
   "exports": {
+    ".": "./index.ts",
     "./client": "./index.ts"
   },
   "peerDependencies": {
