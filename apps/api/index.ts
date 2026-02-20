@@ -4,6 +4,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { prismaClient } from "store/client";
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./auth";
 import { authMiddleware, errorHandler, validate } from "./auth-utils";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
@@ -29,6 +31,8 @@ app.use(cors({
     },
     credentials: true,
 }));
+
+app.all("/api/auth/*", toNodeHandler(auth));
 
 app.use(express.json());
 app.use(helmet());
