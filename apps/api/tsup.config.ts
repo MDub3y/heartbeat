@@ -7,7 +7,9 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   bundle: true,
-  noExternal: ['store'],
+  noExternal: ['store', /^\./],
   external: ['@prisma/client', 'prisma'],
   outDir: 'dist',
+  platform: 'node',
+  target: 'node20',
 });
