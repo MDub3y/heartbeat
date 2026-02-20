@@ -10,9 +10,4 @@ export default defineConfig({
   noExternal: ['store', /^\./],
   external: ['@prisma/client', 'prisma'],
   outDir: 'dist',
-  outExtension({ format }) {
-    return {
-      js: `.js`,
-    };
-  },
 });
