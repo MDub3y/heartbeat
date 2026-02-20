@@ -6,17 +6,11 @@ export const auth = betterAuth({
   database: prismaAdapter(prismaClient, {
     provider: "postgresql",
   }),
-
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3001",
-
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3001",
   trustedOrigins: [
     "http://localhost:3000",
-    ...(process.env.VERCEL_URL
-      ? [`https://${process.env.VERCEL_URL}`]
-      : [])
+    "https://*.vercel.app",
+    "https://your-custom-domain.com"
   ],
 
   secret: process.env.BETTER_AUTH_SECRET,

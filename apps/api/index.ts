@@ -12,7 +12,21 @@ import type { AuthRequest } from "./types";
 const app = express();
 
 app.use(cors({
-    origin: true,
+    origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+
+        const allowedPatterns = [
+            /^http:\/\/localhost:\d+$/,
+            /\.vercel\.app$/,
+            /your-custom-domain\.com$/
+        ];
+        const isAllowed = allowedPatterns.some(pattern => pattern.test(origin));
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 
