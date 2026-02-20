@@ -11,13 +11,15 @@
   },
   "scripts": {
     "dev": "bun --env-file=../../.env index.ts",
-    "build": "cd ../../ && bun install && bun x turbo run generate"
+    "build": "bun x tsup",
+  "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
     "@types/bun": "latest",
     "@types/cors": "^2.8.19",
-    "@types/morgan": "^1.9.10"
+    "@types/morgan": "^1.9.10",
+    "tsup": "^8.5.1"
   },
   "dependencies": {
     "@types/express": "^5.0.6",

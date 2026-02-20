@@ -2,15 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "nodeVersion": "20.x",
-        "includeFiles": ["../../packages/store/**"]
-      }
+      "src": "dist/index.js",
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "index.ts" }
+    { "source": "/(.*)", "destination": "dist/index.js" }
   ]
 }
