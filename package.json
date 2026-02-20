@@ -2,7 +2,7 @@
   "name": "betteruptime",
   "private": true,
   "scripts": {
-    "postinstall": "cd packages/store && bunx prisma generate",
+    "postinstall": "cd packages/store && bun x prisma generate",
     "build": "bun run postinstall && turbo run build",
     "dev": "turbo run dev",
     "dev:ui": "bun run postinstall && turbo run dev --filter=web --filter=api",
