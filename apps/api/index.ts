@@ -132,9 +132,7 @@ app.use(errorHandler);
 
 export default app;
 
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 3001;
-    app.listen(PORT, () => {
-        console.log(`Local API running on port ${PORT}`);
-    });
-}
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Local API running on port ${PORT}`);
+});
