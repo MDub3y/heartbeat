@@ -3,7 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
-import { prismaClient } from "../../packages/store/index.js";
+import { prismaClient } from "store/client";
 import { authMiddleware, errorHandler, validate } from "./middleware";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
