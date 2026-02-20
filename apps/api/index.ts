@@ -4,7 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import { prismaClient } from "store/client";
-import { authMiddleware, errorHandler, validate } from "./middleware";
+import { authMiddleware, errorHandler, validate } from "./auth-utils";
 import { asyncHandler } from "./utils";
 import { z } from "zod";
 import type { AuthRequest } from "./types";
