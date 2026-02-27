@@ -18,18 +18,18 @@ export default function SignInPage() {
     setLoading(true);
 
     await signIn.email({
-        email,
-        password,
-        callbackURL: "/dashboard",
-        fetchOptions: {
-            onSuccess: () => {
-                router.push("/dashboard");
-            },
-            onError: (ctx) => {
-                alert(ctx.error.message);
-                setLoading(false);
-            }
+      email,
+      password,
+      callbackURL: "/dashboard",
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+          setLoading(false);
         }
+      }
     });
   };
 
@@ -40,39 +40,44 @@ export default function SignInPage() {
     >
       <form onSubmit={handleSignIn} className="flex flex-col gap-4">
         <div>
-            <label className="auth-label" htmlFor="email">E-mail</label>
-            <input 
-                id="email"
-                type="email" 
-                placeholder="Your work e-mail" 
-                className="auth-form-control"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoFocus
-                required 
-            />
+          <label className="auth-label" htmlFor="email">E-mail</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Your work e-mail"
+            className="auth-form-control"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoFocus
+            required
+          />
         </div>
 
         <div>
-            <div className="flex justify-between items-center mb-2">
-                <label className="auth-label mb-0" htmlFor="password">Password</label>
-                <Link href="#" className="text-xs text-[#727DA1] hover:text-white transition-colors">Forgot password?</Link>
-            </div>
-            <input 
-                id="password"
-                type="password" 
-                placeholder="••••••••" 
-                className="auth-form-control"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
+          <div className="flex justify-between items-center mb-2">
+            <label className="auth-label mb-0" htmlFor="password">Password</label>
+            <Link href="#" className="text-xs text-[#727DA1] hover:text-white transition-colors">Forgot password?</Link>
+          </div>
+          <input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            className="auth-form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="text-[13px] flex justify-between items-center mb-2 text-[#727DA1]">
+          <div><span className="font-semibold">Email: </span>test@example.com</div>
+          <div><span className="font-semibold">Password: </span>Test@123</div>
         </div>
 
         <div className="mt-4">
-            <button type="submit" className="auth-btn-primary" disabled={loading}>
-                {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Sign in"}
-            </button>
+          <button type="submit" className="auth-btn-primary" disabled={loading}>
+            {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Sign in"}
+          </button>
         </div>
       </form>
     </AuthLayout>
