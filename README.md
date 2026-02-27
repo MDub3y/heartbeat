@@ -5,9 +5,13 @@ Heartbeat is a full-stack, distributed monitoring solution designed to track web
 
 ### **Demo & Access**
 
-**Demo Video**\[Placeholder: Link your Loom or mp4 video here\]
+**Demo Screenshots**
+<img width="1919" height="1079" alt="Screenshot 2026-02-27 174514" src="https://github.com/user-attachments/assets/660b6da0-ae8a-45cb-8981-e80e0e7850e1" />
 
-**Demo Screenshots**| Dashboard Overview | Real-Time Ticks || :--- | :--- || \[Insert Image Path\] | \[Insert Image Path\] |
+<img width="1919" height="1079" alt="Screenshot 2026-02-27 174244" src="https://github.com/user-attachments/assets/2ba2053b-62e0-41c0-8cb4-ca7ed6e8b31e" />
+
+<img width="1916" height="1077" alt="Screenshot 2026-02-27 174338" src="https://github.com/user-attachments/assets/9d34bb68-a59c-4731-8cdd-160ca35cab58" />
+
 
 **Test Credentials**
 
@@ -125,3 +129,4 @@ This project uses **Bun** as the primary package manager and runtime.
     Bash
     
         bun dev
+
